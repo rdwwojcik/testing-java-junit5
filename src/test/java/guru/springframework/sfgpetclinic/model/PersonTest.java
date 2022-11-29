@@ -1,10 +1,11 @@
 package guru.springframework.sfgpetclinic.model;
 
-import org.junit.jupiter.api.Test;
+import guru.springframework.sfgpetclinic.ModelTest;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PersonTest {
+class PersonTest implements ModelTest {
 
     @Test
     void groupedAssertions() {
