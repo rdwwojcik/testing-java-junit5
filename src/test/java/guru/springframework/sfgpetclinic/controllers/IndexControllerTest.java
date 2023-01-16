@@ -1,5 +1,6 @@
 package guru.springframework.sfgpetclinic.controllers;
 
+import com.google.gson.Gson;
 import guru.springframework.sfgpetclinic.ControllerTests;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.*;
@@ -102,5 +103,12 @@ class IndexControllerTest implements ControllerTests {
     @EnabledIfEnvironmentVariable(named = "USER", matches = "fred")
     @Test
     void testIfUserFred() {
+    }
+
+    @Test
+    void testJson(){
+        Gson g = new Gson();
+        String s = g.toJson("{\"nodeId\" : \"ns=3;s=0:IVI_Unit.Set.MEUFactors.Pressure.MEUFactorA\",\"opcUaDataType\" : \"Float\",\"samplingRateInMilliseconds\" : 0}");
+        System.out.println(s);
     }
 }

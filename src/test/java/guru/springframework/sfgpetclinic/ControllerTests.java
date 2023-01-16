@@ -1,5 +1,6 @@
 package guru.springframework.sfgpetclinic;
 
+import guru.springframework.sfgpetclinic.enumerations.TestEnum;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.TestInstance;
