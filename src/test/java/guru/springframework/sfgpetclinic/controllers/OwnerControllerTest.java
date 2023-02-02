@@ -16,6 +16,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class OwnerControllerTest {
@@ -70,6 +71,7 @@ class OwnerControllerTest {
         //then
         assertEquals("%Back%", stringArgumentCaptor.getValue());
         assertEquals("redirect:/owners/1", viewName);
+        verifyNoInteractions(model);
     }
 
     @Test
@@ -78,9 +80,13 @@ class OwnerControllerTest {
         Owner owner = new Owner(1L, "Joe", "DontFindMe");
         //when
         String viewName = ownerController.processFindForm(owner, bindingResult, null);
+
+        verifyNoMoreInteractions(ownerService);
+
         //then
         assertEquals("%DontFindMe%", stringArgumentCaptor.getValue());
         assertEquals("owners/findOwners", viewName);
+        verifyNoInteractions(model);
     }
 
 
@@ -96,7 +102,8 @@ class OwnerControllerTest {
         assertEquals("owners/ownersList", viewName);
         //inorder asserts
         inOrder.verify(ownerService).findAllByLastNameLike(anyString());
-        inOrder.verify(model).addAttribute(anyString(), anyList());
+        inOrder.verify(model, times(1)).addAttribute(anyString(), anyList());
+        verifyNoMoreInteractions(model);
     }
 
     @Test
